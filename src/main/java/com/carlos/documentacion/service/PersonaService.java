@@ -11,17 +11,20 @@ import java.util.Optional;
 @Service
 public class PersonaService {
 
-    @Autowired
-    private PersonaRepository personaRepository;
+    private final PersonaRepository personaRepository;
 
+    public PersonaService(PersonaRepository personaRepository) {
+        this.personaRepository = personaRepository;
+    }
     // Obtener todas las personas
     public List<Persona> listarPersonas() {
         return personaRepository.findAll();
     }
 
     // Buscar una persona por ID
-    public Optional<Persona> buscarPorId(Integer id) {
-        return personaRepository.findById(id);
+    public Persona buscarPorId(Integer id) {
+        return personaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Persona no encontrado"));
     }
 
     // Guardar una persona

@@ -2,6 +2,7 @@ package com.carlos.documentacion.controller;
 
 import com.carlos.documentacion.entity.Persona;
 import com.carlos.documentacion.service.PersonaService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +26,11 @@ public class PersonaController {
 
     // Buscar una persona por ID
     @GetMapping("/{id}")
-    public Optional<Persona> buscarPorId(@PathVariable Integer id) {
-        return personaService.buscarPorId(id);
+    public ResponseEntity<Persona> buscarPorId(@PathVariable Integer id) {
+
+        Persona persona = personaService.buscarPorId(id);
+
+        return ResponseEntity.ok(persona);
     }
 
     // Crear una persona

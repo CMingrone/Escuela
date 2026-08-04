@@ -19,8 +19,9 @@ public class Persona {
     @Column(nullable = false, unique = true, length = 20)
     private String dni;
 
-    @Column(name = "rol_id")
-    private Integer rolId;
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Rol rol;
 
     public Persona() {
     }
@@ -57,11 +58,11 @@ public class Persona {
         this.dni = dni;
     }
 
-    public Integer getRolId() {
-        return rolId;
+    public Rol getRol() {
+        return rol;
     }
 
     public void setRolId(Integer rolId) {
-        this.rolId = rolId;
+        this.rol = rol;
     }
 }
